@@ -1,0 +1,166 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.android.uburu"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.32"
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //ROOM
+    dependencies {
+        def room_version = "2.3.0"
+
+        implementation "androidx.room:room-runtime:$room_version"
+        kapt "androidx.room:room-compiler:$room_version"
+
+        // optional - Kotlin Extensions and Coroutines support for Room
+        implementation "androidx.room:room-ktx:$room_version"
+
+        // optional - Test helpers
+        testImplementation "androidx.room:room-testing:$room_version"
+    }
+
+    //RECYCLER-VIEW
+    dependencies {
+        implementation "androidx.recyclerview:recyclerview:1.2.0"
+        // For control over item selection of both touch and mouse driven selection
+        implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    }
+
+    //CARD-VIEW
+    dependencies {
+        implementation "androidx.cardview:cardview:1.0.0"
+    }
+
+    //RETROFIT NETWORK LIBRARY AND CONVERTERS
+    dependencies {
+        implementation "com.squareup.retrofit2:retrofit:2.9.0"
+        implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+        implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+        implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+        implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+        implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    }
+
+    //PICASSO IMAGE LIBRARY
+    dependencies {
+        implementation 'com.squareup.picasso:picasso:2.71828'
+    }
+
+    //GOOGLE G-SON LIBRARY
+    dependencies {
+        implementation 'com.google.code.gson:gson:2.8.6'
+    }
+
+    dependencies {
+        def lifecycle_version = "2.3.1"
+        def arch_version = "2.1.0"
+
+        // ViewModel
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+        // LiveData
+        implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+        // Annotation processor
+        kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+        // optional - Test helpers for LiveData
+        testImplementation "androidx.arch.core:core-testing:$arch_version"
+
+        implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+        implementation "androidx.activity:activity-ktx:1.2.3"
+    }
+
+    //DAGGER
+    dependencies {
+        def dagger_version = "2.35.1"
+
+        // Dagger2 core
+        implementation "com.google.dagger:dagger:$dagger_version"
+        annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+        // Dagger Android
+        implementation "com.google.dagger:dagger-android:$dagger_version"
+        implementation "com.google.dagger:dagger-android-support:$dagger_version"
+        annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+
+        kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+        kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    }
+
+    //ASYNC SERVICES
+    dependencies {
+        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
+    }
+
+    //TESTING LIBRARY
+    dependencies {
+        testImplementation 'org.robolectric:robolectric:4.5.1'
+        androidTestImplementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.32'
+        androidTestImplementation 'androidx.test:core:' + rootProject.coreVersion
+        androidTestImplementation 'androidx.test:core-ktx:' + rootProject.coreVersion
+        androidTestImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
+        androidTestImplementation 'androidx.test.ext:junit-ktx:' + rootProject.extJUnitVersion
+        androidTestImplementation 'com.android.support.test:rules:' + rootProject.runnerVersion
+        androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
+        androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+        androidTestImplementation 'androidx.test.espresso:espresso-contrib:' + rootProject.espressoVersion;
+
+        testImplementation 'androidx.test:core:' + rootProject.coreVersion;
+        testImplementation 'androidx.test.ext:junit:' + rootProject.extJUnitVersion
+        testImplementation 'junit:junit:4.13.2'
+        testImplementation 'org.robolectric:robolectric:' + rootProject.robolectricVersion
+        testImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+        testImplementation 'androidx.test.espresso:espresso-intents:' + rootProject.espressoVersion
+        testImplementation 'androidx.test.ext:truth:' + rootProject.extTruthVersion
+    }
+}

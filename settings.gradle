@@ -1,0 +1,4 @@
+include ':network-center'
+include ':data-center'
+include ':app'
+rootProject.name = "Uburu"
